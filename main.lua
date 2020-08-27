@@ -6,7 +6,12 @@ function setGraphicsMode( scale, fullscreen, vsync, fsaa )
 	end
 end
 
-function love.load()
+debugmode = false
+
+function love.load(arg)
+	if arg[1] == "debug" then
+		debugmode = true
+    end
 	--requires--
 	require "controls"
 	require "gameB"
@@ -801,6 +806,10 @@ function getrainbowcolor(i)
 end
 
 function love.keypressed( key, unicode )
+	-- Debug
+	if key == "rctrl" and debugmode then
+		debug.debug()
+	end
 	if gamestate == nil then
 		if controls.check("return", key) then
 			gamestate = "title"
