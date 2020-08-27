@@ -537,7 +537,7 @@ function loadconfig()
 end
 
 function loadoptions()
-	if love.filesystem.exists("options.txt") then
+	if love.filesystem.getInfo("options.txt") then
 		local s = love.filesystem.read("options.txt")
 		local split1 = s:split("\n")
 		for i = 1, #split1 do
@@ -645,9 +645,8 @@ function loadhighscores()
 	else
 		fileloc = "highscoresB.txt"
 	end
-	
-	if love.filesystem.exists( fileloc ) then
-		
+
+	if love.filesystem.getInfo( fileloc ) then
 		highdata = love.filesystem.read( fileloc )
 		highdata = highdata:split(";")
 		highscore = {}
