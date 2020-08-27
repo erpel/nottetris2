@@ -465,7 +465,7 @@ function newPaddedImageFont(filename, glyphs)
         padded:paste(source, 0, 0)
 		local image = love.graphics.newImage(padded)
 		image:setFilter("nearest", "nearest")
-        return love.graphics.newImageFont(image, glyphs)
+        return love.graphics.newImageFont(padded, glyphs)
     end
 	
     return love.graphics.newImageFont(source, glyphs)
