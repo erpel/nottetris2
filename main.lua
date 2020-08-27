@@ -597,7 +597,9 @@ end
 
 function saveoptions()
 	local s = ""
-	
+    -- force config written with period (.) as decimal separator.
+	-- tonumber can not parse what tostring makes of 0.1
+	os.setlocale("C")
 	s = s .. "volume=" .. volume .. "\n"
 	s = s .. "hue=" .. hue .. "\n"
 	s = s .. "scale=" .. scale .. "\n"
