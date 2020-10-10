@@ -34,10 +34,10 @@ function gameA_load()
 	
 	wallbodies = love.physics.newBody(world, 32, -64, "static") --WALLS
 	wallfixtures[0] = love.physics.newFixture(wallbodies, love.physics.newPolygonShape( -8, -64, -8,672, 24,672, 24,-64))
-	wallfixtures[0]:setUserData({"left"})
+	wallfixtures[0]:setUserData({name="left", wall=true})
 	wallfixtures[0]:setFriction(0.00001)
 	wallfixtures[1] = love.physics.newFixture(wallbodies, love.physics.newPolygonShape( 352,-64, 352,672, 384,672, 384,-64))
-	wallfixtures[1]:setUserData({"right"})
+	wallfixtures[1]:setUserData({name="right", wall=true})
 	wallfixtures[1]:setFriction(0.00001)
 	wallfixtures[2] = love.physics.newFixture(wallbodies, love.physics.newPolygonShape( 24,640, 24,672, 352,672, 352,640))
 	wallfixtures[2]:setUserData({"ground"})
@@ -1165,7 +1165,9 @@ function collideA(a, b, coll) --box2d callback. calls endblock.
 	end
 	
 	if a:getUserData() or b:getUserData() then
-		if a:getUserData() ~= "left" and a:getUserData() ~= "right" and b:getUserData() ~= "left" and b:getUserData() ~= "right" then 
+		aData = a:getUserData()
+		bData = b:getUserData()
+		if aData.wall or bData.wall then
 			if gamestate == "gameA" then
 				if tetribodies[1]:getY() < losingY then
 					gamestate = "failingA"
