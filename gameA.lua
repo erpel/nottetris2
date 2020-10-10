@@ -1177,9 +1177,9 @@ function collideA(a, b, coll) --box2d callback. calls endblock.
 					love.audio.stop(gameover1)
 					love.audio.play(gameover1)
 				
-					if wallshapes[2] then
-						wallshapes[2]:destroy()
-						wallshapes[2] = nil
+					if wallfixtures[2] then
+						wallfixtures[2]:destroy()
+						wallfixtures[2] = nil
 					end
 				else
 					tetrikind[highestbody()+1] = tetrikind[1]
